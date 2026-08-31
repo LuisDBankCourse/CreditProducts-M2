@@ -1,0 +1,13 @@
+bin/
+obj/
+/packages/
+riderModule.iml
+/_ReSharper.Caches/
+
+# Local IDE and operating-system files
+.DS_Store
+.idea/
+
+# Local settings may contain connection strings, tokens, or other secrets.
+src/CreditProducts.Api/appsettings.Development.json
+src/CreditProducts.Api/appsettings.Local.json

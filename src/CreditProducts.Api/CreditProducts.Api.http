@@ -1,0 +1,6 @@
+@CreditProducts.Api_HostAddress = http://localhost:5265
+
+GET {{CreditProducts.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
