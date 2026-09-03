@@ -19,8 +19,8 @@ public class CreditProductRepository : ICreditProductRepository
     public Task<bool> ExistsByCodeAsync(string code, CancellationToken ct = default)
         => _creditProductDbContext.CreditProducts.AnyAsync(x => x.Code == code);
 
-    public Task<Domain.Entities.CreditProduct?> GetByIdAsync(Guid Id, CancellationToken ct = default)
-        => _creditProductDbContext.CreditProducts.SingleOrDefaultAsync(x => x.Id == Id);
+    public Task<Domain.Entities.CreditProduct?> GetByIdAsync(Guid id, CancellationToken ct = default)
+        => _creditProductDbContext.CreditProducts.SingleOrDefaultAsync(x => x.Id == id);
 
     public Task SaveChangesAsync(CancellationToken ct = default)
         => _creditProductDbContext.SaveChangesAsync(ct);

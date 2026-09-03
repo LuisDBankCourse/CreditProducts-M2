@@ -18,10 +18,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Controllers\" />
-    </ItemGroup>
-
-    <ItemGroup>
+      <ProjectReference Include="..\CreditProducts.Application\CreditProducts.Application.csproj" />
       <ProjectReference Include="..\CreditProducts.Infrastructure\CreditProducts.Infrastructure.csproj" />
     </ItemGroup>
 
