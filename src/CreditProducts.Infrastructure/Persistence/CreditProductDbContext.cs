@@ -10,7 +10,7 @@ public class CreditProductDbContext : DbContext
 
     }
 
-    public DbSet<CreditProducts.Domain.Entities.CreditProduct> CreditProducts { get; set; }
+    public DbSet<Domain.Entities.CreditProduct> CreditProducts { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
