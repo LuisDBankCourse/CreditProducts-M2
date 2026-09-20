@@ -10,6 +10,7 @@ pool:
   vmImage: ubuntu-latest
 
 variables:
+- group: PRODUCTAPI
 - name: imagetag
   value: '$(Build.BuildId)'
 
@@ -49,3 +50,28 @@ steps:
       $(imagetag)
 
     includeLatestTag: true
+
+- task: KubernetesManifest@1
+  inputs:
+    action: 'createSecret'
+    connectionType: 'kubernetesServiceConnection'
+    kubernetesServiceConnection: 'aks-creditflow-connection'
+    namespace: 'prod'
+    secretType: 'generic'
+    secretName: 'creditproductsapi-secrets'
+
+    secretArguments: >
+      --from-literal=CreditProductConnection="$(CreditProductConnection)"
+
+- task: KubernetesManifest@1
+  inputs:
+    action: 'deploy'
+    connectionType: 'kubernetesServiceConnection'
+    kubernetesServiceConnection: 'aks-creditflow-connection'
+    namespace: 'prod'
+    manifests: |
+     '$(Build.SourcesDirectory)/k8s/deployment.yml'
+     '$(Build.SourcesDirectory)/k8s/service.yml'
+    containers: 'creditflowacrdvid.azurecr.io/creditproductapi:$(imagetag)'
+    rolloutStatusTimeout: '300'
+
