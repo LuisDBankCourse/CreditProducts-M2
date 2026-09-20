@@ -41,14 +41,14 @@ var app = builder.Build();
 app.UseSerilogRequestLogging();
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.MapOpenApi();
-    app.MapScalarApiReference(options => options.WithTitle("CreditProducts API")
-        .WithTheme(ScalarTheme.Kepler)
-        .WithDefaultHttpClient(ScalarTarget.CSharp, ScalarClient.HttpClient)
-    );
-}
+/*if (app.Environment.IsDevelopment())
+{*/
+app.MapOpenApi();
+app.MapScalarApiReference(options => options.WithTitle("CreditProducts API")
+    .WithTheme(ScalarTheme.Kepler)
+    .WithDefaultHttpClient(ScalarTarget.CSharp, ScalarClient.HttpClient)
+);
+//}
 
 app.UseHttpsRedirection();
 app.MapControllers();
