@@ -1,6 +1,6 @@
 services:
   creditproducts.api:
-    image: ${DOCKER_REGISTRY-}creditproductsapi
+    image: ${DOCKER_REGISTRY-}creditproductapi
     build:
       context: .
       dockerfile: src/CreditProducts.Api/Dockerfile

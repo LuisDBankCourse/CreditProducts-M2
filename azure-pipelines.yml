@@ -22,7 +22,7 @@ steps:
     azureSubscription: 'Azure subscription 1(6940fc78-e8c0-4d97-96cd-b6b824327fcc)'
     azureContainerRegistry: '{"loginServer":"creditflowacrdvid.azurecr.io", "id" : "/subscriptions/6940fc78-e8c0-4d97-96cd-b6b824327fcc/resourceGroups/CursoDavidCreditFlow/providers/Microsoft.ContainerRegistry/registries/creditflowacrdvid"}'
     dockerComposeFile: '**/docker-compose.yml'
-    projectName: 'creditproductsapi'
+    projectName: 'creditproductapi'
     action: 'Build services'
     qualifyImageNames: true
 
@@ -39,7 +39,7 @@ steps:
     azureSubscription: 'Azure subscription 1(6940fc78-e8c0-4d97-96cd-b6b824327fcc)'
     azureContainerRegistry: '{"loginServer":"creditflowacrdvid.azurecr.io", "id" : "/subscriptions/6940fc78-e8c0-4d97-96cd-b6b824327fcc/resourceGroups/CursoDavidCreditFlow/providers/Microsoft.ContainerRegistry/registries/creditflowacrdvid"}'
     dockerComposeFile: '**/docker-compose.yml'
-    projectName: 'creditproductsapi'
+    projectName: 'creditproductapi'
     action: 'Push services'
 
     qualifyImageNames: true
@@ -70,8 +70,7 @@ steps:
     kubernetesServiceConnection: 'aks-creditflow-connection'
     namespace: 'prod'
     manifests: |
-     '$(Build.SourcesDirectory)/k8s/deployment.yml'
-     '$(Build.SourcesDirectory)/k8s/service.yml'
+      $(Build.SourcesDirectory)/k8s/deployment.yml
+      $(Build.SourcesDirectory)/k8s/service.yml
     containers: 'creditflowacrdvid.azurecr.io/creditproductapi:$(imagetag)'
     rolloutStatusTimeout: '300'
-

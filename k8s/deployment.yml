@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: creditproductapi
+  namespace: prod
+  labels:
+    app: creditproductapi
+
+spec:
+  replicas: 1
+
+  selector:
+    matchLabels:
+      app: creditproductapi
+
+  template:
+    metadata:
+      labels:
+        app: creditproductapi
+    spec:
+      containers:
+        - name: creditproductapi
+          image: 'creditflowacrdvid.azurecr.io/creditproductapi:latest'
+          ports:
+            - containerPort: 8080
+
+          env:
+            - name: ConnectionStrings__CreditProductConnection
+              valueFrom:
+                secretKeyRef:
+                  name: creditproductsapi-secrets
+                  key: CreditProductConnection
+                  
+          resources:
+            requests:
+              memory: "128Mi"
+              cpu: "100m"
+            limits:
+              memory: "512Mi"
+              cpu: "500m"
